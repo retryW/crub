@@ -12,4 +12,7 @@ jmp $
 times 510 - ($ - $$) db 0
 
 ; Write the special "bootloader" identifier to the final 2 bytes
-dw 0x55AA
+;dw 0x55AA - This doesn't work because of little endian...
+;            In memory it gets stored as 0xAA, 0x55 because 0xAA is the LSB
+;            I could make it dw 0xAA55 but that's confusing.
+db 0x55, 0xAA
